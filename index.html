@@ -10,6 +10,10 @@
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
     <script type="importmap">
     {
@@ -20,7 +24,7 @@
         "react-dom/": "https://esm.sh/react-dom@18.2.0/",
         "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
         "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.0",
-        "lucide-react": "https://esm.sh/lucide-react@0.344.0"
+        "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom"
       }
     }
     </script>
