@@ -14,6 +14,19 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Asegurar que los selectores de fecha y hora sean visibles */
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            display: block;
+            cursor: pointer;
+            filter: invert(0.4); /* Un gris suave para que no desentone */
+            padding: 2px;
+        }
+        
+        input[type="date"], input[type="time"] {
+            min-height: 45px;
+        }
     </style>
     <script type="importmap">
     {

@@ -65,7 +65,6 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
 
     try {
       const scheduledAt = new Date(`${date}T${time}`).toISOString();
-      // If clinic is closed, status is 'request', otherwise 'pending'
       const status = clinicConfig?.is_open ? 'pending' : 'request';
 
       const { error } = await supabase
@@ -189,14 +188,6 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                     )}
                   </div>
                 </div>
-                
-                {apt.status === 'finished' && apt.client_rating > 0 && (
-                  <div className="flex items-center gap-1 bg-yellow-50 px-3 py-1 rounded-full text-yellow-600 font-bold text-sm">
-                    {Array.from({ length: apt.client_rating }).map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           ))
@@ -208,7 +199,6 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
         )}
       </div>
 
-      {/* Booking Modal */}
       {isBooking && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -227,7 +217,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                     type="text"
                     placeholder="Ej. Limpieza Dental"
                     required
-                    className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
@@ -235,7 +225,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Método de Pago</label>
                   <select
-                    className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value as PaymentMethod)}
                   >
@@ -249,7 +239,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                 <label className="text-sm font-bold text-slate-700">Descripción</label>
                 <textarea
                   placeholder="Explica brevemente el motivo de tu visita..."
-                  className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none h-24 resize-none"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none h-24 resize-none shadow-sm"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -257,12 +247,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 text-slate-700">Fecha</label>
+                  <label className="text-sm font-bold text-slate-700">Fecha</label>
                   <input
                     type="date"
                     required
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm text-slate-900"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                   />
@@ -272,7 +262,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                   <input
                     type="time"
                     required
-                    className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm text-slate-900"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
                   />
@@ -285,7 +275,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                   <input
                     type="text"
                     placeholder="Nombre del acompañante"
-                    className="flex-1 px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
                     value={newAttendee}
                     onChange={(e) => setNewAttendee(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddAttendee())}
@@ -293,7 +283,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ profile }) => {
                   <button
                     type="button"
                     onClick={handleAddAttendee}
-                    className="px-4 py-2 bg-slate-800 text-white rounded-xl hover:bg-slate-900"
+                    className="px-6 py-3 bg-slate-800 text-white rounded-xl hover:bg-slate-900 shadow-md transition-all"
                   >
                     Añadir
                   </button>

@@ -93,7 +93,7 @@ const Auth: React.FC<AuthProps> = ({ onBack }) => {
                       type="text"
                       placeholder="Nombre"
                       required
-                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
+                      className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                     />
@@ -104,7 +104,7 @@ const Auth: React.FC<AuthProps> = ({ onBack }) => {
                       type="text"
                       placeholder="Apellido"
                       required
-                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
+                      className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                     />
@@ -118,7 +118,7 @@ const Auth: React.FC<AuthProps> = ({ onBack }) => {
                   type="email"
                   placeholder="Correo electrónico"
                   required
-                  className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -130,7 +130,7 @@ const Auth: React.FC<AuthProps> = ({ onBack }) => {
                   type="password"
                   placeholder="Contraseña"
                   required
-                  className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -143,7 +143,7 @@ const Auth: React.FC<AuthProps> = ({ onBack }) => {
                     type="password"
                     placeholder="Confirmar Contraseña"
                     required
-                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
+                    className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />

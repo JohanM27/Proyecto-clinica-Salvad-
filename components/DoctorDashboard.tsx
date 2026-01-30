@@ -11,11 +11,10 @@ import {
   RefreshCcw, 
   Clock,
   Plus,
-  CreditCard,
-  Users,
   LayoutGrid,
   TrendingUp,
-  AlertCircle
+  AlertCircle,
+  X
 } from 'lucide-react';
 
 interface DoctorDashboardProps {
@@ -139,7 +138,6 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
 
   return (
     <div className="space-y-10">
-      {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm flex items-center justify-between">
           <div>
@@ -225,39 +223,28 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
                       <button 
                         onClick={() => handleAction(apt.id, 'confirmed')}
                         className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center hover:bg-green-600 hover:text-white transition-all"
-                        title="Confirmar"
                       >
                         <CheckCircle2 className="w-6 h-6" />
                       </button>
                       <button 
                         onClick={() => handleAction(apt.id, 'finished')}
                         className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
-                        title="Finalizar"
                       >
                         <TrendingUp className="w-6 h-6" />
                       </button>
                       <button 
                         onClick={() => handleRescheduleTomorrow(apt)}
                         className="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all"
-                        title="Mañana"
                       >
                         <RefreshCcw className="w-6 h-6" />
                       </button>
                       <button 
                         onClick={() => handleAction(apt.id, 'cancelled')}
                         className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"
-                        title="Cancelar"
                       >
                         <XCircle className="w-6 h-6" />
                       </button>
                     </>
-                  )}
-                  {apt.status === 'finished' && (
-                    <div className="flex items-center gap-1 bg-yellow-50 px-4 py-2 rounded-2xl">
-                      {[1,2,3,4,5].map(s => (
-                        <Star key={s} className={`w-4 h-4 ${apt.client_rating >= s ? 'text-yellow-500 fill-current' : 'text-slate-200'}`} />
-                      ))}
-                    </div>
                   )}
                 </div>
               </div>
@@ -293,17 +280,21 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
         </div>
       )}
 
-      {/* Modal Creación Manual */}
       {isCreating && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
-          <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-xl p-10 space-y-6 animate-in fade-in zoom-in duration-300">
-            <h2 className="text-3xl font-black text-slate-900">Nueva Cita Directa</h2>
+          <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-xl p-10 space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-3xl font-black text-slate-900">Nueva Cita Directa</h2>
+              <button onClick={() => setIsCreating(false)} className="p-2 hover:bg-slate-100 rounded-full">
+                <X className="w-6 h-6 text-slate-400" />
+              </button>
+            </div>
             <form onSubmit={handleManualCreate} className="space-y-4">
               <div className="space-y-1">
                 <label className="text-sm font-bold text-slate-700">Paciente</label>
                 <select 
                   required 
-                  className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
                   value={selectedClientId}
                   onChange={(e) => setSelectedClientId(e.target.value)}
                 >
@@ -315,7 +306,7 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
                 <label className="text-sm font-bold text-slate-700">Motivo</label>
                 <input 
                   required 
-                  className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
                   placeholder="Ej. Tratamiento de Conducto"
                   value={newAptTitle}
                   onChange={e => setNewAptTitle(e.target.value)}
@@ -327,7 +318,7 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
                   <input 
                     type="date" 
                     required 
-                    className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm text-slate-900"
                     value={newAptDate}
                     onChange={e => setNewAptDate(e.target.value)}
                   />
@@ -337,14 +328,14 @@ const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ profile }) => {
                   <input 
                     type="time" 
                     required 
-                    className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm text-slate-900"
                     value={newAptTime}
                     onChange={e => setNewAptTime(e.target.value)}
                   />
                 </div>
               </div>
               <div className="flex gap-4 pt-6">
-                <button type="submit" className="flex-1 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all">Crear Cita</button>
+                <button type="submit" className="flex-1 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-md">Crear Cita</button>
                 <button type="button" onClick={() => setIsCreating(false)} className="flex-1 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all">Cancelar</button>
               </div>
             </form>
